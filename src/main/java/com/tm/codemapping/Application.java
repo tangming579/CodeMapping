@@ -1,12 +1,14 @@
 package com.tm.codemapping;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CodemappingApplication {
+@MapperScan("cn.tm.codemapping.dao")
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CodemappingApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 }

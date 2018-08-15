@@ -1,0 +1,26 @@
+server:
+  port: 8549
+spring:
+  application:
+    name: spring-boot-tutorial
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/soho3q?characterEncoding=UTF-8
+    username: root
+    password: 123456
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true  #使用数值timestamp表示日期
+      
+mybatis.configuration.mapUnderscoreToCamelCase: true
+
+logging:
+  file: target/app.log
+  level:
+    ROOT: WARN
+    cn.devmgr: TRACE
+    cn.devmgr.tutorial.dao: WARN
+    
+#此项目的自定义属性  
+tutorial:
+  uploadFolder: target/upload-files/    #文件上传目录，可以用/开头的绝对路径

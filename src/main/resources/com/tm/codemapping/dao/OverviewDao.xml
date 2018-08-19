@@ -4,12 +4,12 @@
   
   <insert id="insert" parameterType="com.tm.codemapping.pojo.AssetItemPojo" 
   			useGeneratedKeys="true" keyProperty="id">
-    insert into assetitem (id, name )
+    insert into asset_item (id, name )
     		values (#{id}, #{name} )
   </insert>
   
-  <update id="update" parameterType="com.tutorial.demo.pojo.AssetItemPojo">
-    update assetitem set name=#{name}, id=#{id} where id=#{id}
+  <update id="update" parameterType="com.tm.codemapping.pojo.AssetItemPojo">
+    update asset_item set name=#{name}, id=#{id} where id=#{id}
   </update>
   
 </mapper>

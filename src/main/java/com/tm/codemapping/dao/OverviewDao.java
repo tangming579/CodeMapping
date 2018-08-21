@@ -19,4 +19,7 @@ public interface OverviewDao {
 	
 	@Select("select * from asset_item where id=#{id}")
 	public AssetItemPojo getOneById(String id);
+	
+	@Select("insert into asset_item (name,number) values(#{name}，#{number})")
+	public AssetItemPojo insertOne(String name, String number);
 }

@@ -7,17 +7,22 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tm.codemapping.pojo.AssetItemPojo;
 import com.tm.codemapping.service.AssetItemService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
 
 @RestController
 @RequestMapping("/api/values")
+@Api(value = "Swagger注解控制器")
 public class ValuesController {
 
 	@Autowired AssetItemService assetItemService;
@@ -41,4 +46,18 @@ public class ValuesController {
         }
         return ts;
     }
+	
+	@ResponseBody
+	@RequestMapping("/updatePassword")
+	@ApiOperation(value="创建特定资产", notes="")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "name", value = "资产名称", required = true, dataType = "String"),
+		@ApiImplicitParam(name = "number", value = "资产编号", required = true, dataType = "String")
+	})
+	public AssetItemPojo insertOne(@RequestParam(value="name",required=false) String name,@RequestParam(name="number",required=false) String number) {
+		AssetItemPojo item = new AssetItemPojo();
+		item.setName(name);
+		item.setNumber(number);
+		return item;
+	}
 }

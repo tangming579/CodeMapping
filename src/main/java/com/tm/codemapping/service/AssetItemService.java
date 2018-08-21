@@ -29,4 +29,11 @@ public class AssetItemService {
 		//AssetItemPojo item = new AssetItemPojo();
 		return item;
 	}
+	
+	@Transactional(readOnly=true)
+	public AssetItemPojo insertItem(String name,String number) {
+		AssetItemPojo item = overviewDao.insertOne(name,number);
+		//AssetItemPojo item = new AssetItemPojo();
+		return item;
+	}
 }

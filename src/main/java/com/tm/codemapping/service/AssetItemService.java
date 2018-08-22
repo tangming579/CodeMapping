@@ -30,7 +30,7 @@ public class AssetItemService {
 		return item;
 	}
 	
-	@Transactional(readOnly=true)
+	@Transactional(readOnly=false)
 	public AssetItemPojo insertItem(String name,String number) {
 		AssetItemPojo item = overviewDao.insertOne(name,number);
 		//AssetItemPojo item = new AssetItemPojo();

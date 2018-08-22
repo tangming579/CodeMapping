@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,8 +38,8 @@ public class ValuesController {
     }        
     
 	@ApiOperation(value="获取特定资产", notes="")
-	@ApiImplicitParam(name = "id", value = "资产ID", required = true, dataType = "String")
-	@GetMapping("/{id}")
+	@ApiImplicitParam(name = "id", value = "资产ID",paramType = "path", dataType = "String")
+	@RequestMapping(value = "/{id}", method=  {RequestMethod.POST,RequestMethod.GET})
     public AssetItemPojo getOne(@PathVariable String id){
        
 		AssetItemPojo ts = assetItemService.getItemById(id);
@@ -48,16 +50,15 @@ public class ValuesController {
     }
 	
 	@ResponseBody
-	@RequestMapping("/updatePassword")
+	@PostMapping("/updatePassword")
 	@ApiOperation(value="创建特定资产", notes="")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = "name", value = "资产名称", required = true, dataType = "String"),
-		@ApiImplicitParam(name = "number", value = "资产编号", required = true, dataType = "String")
+		@ApiImplicitParam(name = "name", value = "资产名称", required = true,paramType="query", dataType = "String"),
+		@ApiImplicitParam(name = "number", value = "资产编号", required = true,paramType="query", dataType = "String")
 	})
 	public AssetItemPojo insertOne(@RequestParam(value="name",required=false) String name,@RequestParam(name="number",required=false) String number) {
-		AssetItemPojo item = new AssetItemPojo();
-		item.setName(name);
-		item.setNumber(number);
+		AssetItemPojo item = assetItemService.insertItem(name, number);
+		
 		return item;
 	}
 }

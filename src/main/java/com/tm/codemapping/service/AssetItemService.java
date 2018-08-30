@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.tm.codemapping.dao.OverviewDao;
+import com.tm.codemapping.mapper.OverviewMapper;
 import com.tm.codemapping.pojo.AssetItemPojo;
 
 
 @Service
 public class AssetItemService {
 
-	@Autowired private OverviewDao overviewDao;
+	@Autowired private OverviewMapper overviewDao;
 	
 	@Transactional(readOnly=true)
     public List<AssetItemPojo> getAll() {

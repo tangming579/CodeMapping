@@ -1,4 +1,4 @@
-package com.tm.codemapping.dao;
+package com.tm.codemapping.mapper;
 
 
 import java.util.List;
@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OverviewDao {
+public interface OverviewMapper {
 
 	@Select("select * from asset_item")
     public List<AssetItemPojo> getAll();

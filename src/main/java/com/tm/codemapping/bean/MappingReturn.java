@@ -1,6 +1,6 @@
-package com.tm.codemapping.pojo;
+package com.tm.codemapping.bean;
 
-public class ReturnModel {
+public class MappingReturn {
 
 	private String Result;
 	

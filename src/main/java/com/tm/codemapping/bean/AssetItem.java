@@ -1,6 +1,6 @@
-package com.tm.codemapping.pojo;
+package com.tm.codemapping.bean;
 
-public class AssetItemPojo {
+public class AssetItem {
 
 	private String id;
 	private String name;

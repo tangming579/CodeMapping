@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tm.codemapping.pojo.AssetItemPojo;
+import com.tm.codemapping.bean.AssetItem;
 import com.tm.codemapping.service.AssetItemService;
 
 import io.swagger.annotations.Api;
@@ -31,18 +31,18 @@ public class ValuesController {
 	
 	@GetMapping
 	@ApiOperation(value="获取资产列表", notes="")
-    public List<AssetItemPojo> getAll() {
+    public List<AssetItem> getAll() {
 		
-		List<AssetItemPojo> items = assetItemService.getAll();		
+		List<AssetItem> items = assetItemService.getAll();		
 		return items;
     }        
     
 	@ApiOperation(value="获取特定资产", notes="")
 	@ApiImplicitParam(name = "id", value = "资产ID",paramType = "path", dataType = "String")
 	@RequestMapping(value = "/{id}", method=  {RequestMethod.POST,RequestMethod.GET})
-    public AssetItemPojo getOne(@PathVariable String id){
+    public AssetItem getOne(@PathVariable String id){
        
-		AssetItemPojo ts = assetItemService.getItemById(id);
+		AssetItem ts = assetItemService.getItemById(id);
         if(ts == null) {
             throw new ResourceNotFoundException();
         }
@@ -56,8 +56,8 @@ public class ValuesController {
 		@ApiImplicitParam(name = "name", value = "资产名称", required = true,paramType="query", dataType = "String"),
 		@ApiImplicitParam(name = "number", value = "资产编号", required = true,paramType="query", dataType = "String")
 	})
-	public AssetItemPojo insertOne(@RequestParam(value="name",required=false) String name,@RequestParam(name="number",required=false) String number) {
-		AssetItemPojo item = assetItemService.insertItem(name, number);
+	public AssetItem insertOne(@RequestParam(value="name",required=false) String name,@RequestParam(name="number",required=false) String number) {
+		AssetItem item = assetItemService.insertItem(name, number);
 		
 		return item;
 	}

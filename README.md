@@ -7,3 +7,4 @@
 - Redis
 - RabbitMQ
 - Swagger
+- MySql

@@ -8,3 +8,4 @@
 - RabbitMQ
 - Swagger
 - MySql
+- WebSocket

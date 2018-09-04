@@ -1,6 +1,6 @@
 package com.tm.codemapping.bean;
 
-public class MappingReturn {
+public class RespBean {
 
 	private String Result;
 	

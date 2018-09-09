@@ -11,13 +11,12 @@ spring:
   jackson:
     serialization:
       write-dates-as-timestamps: true  #使用数值timestamp表示日期
-  security:
-  	basic:
-  		enabled= true
-  	user:
-  		name: admin
-  		password: admin  
-      
+
+security:
+  user:
+    name: admin
+    password: admin
+
 mybatis.configuration.mapUnderscoreToCamelCase: true
 
 logging:

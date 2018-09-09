@@ -20,8 +20,9 @@ public class EmailRunnable implements Runnable {
 
 	@Override
 	public void run() {
+		/*
 		// TODO Auto-generated method stub
-		try {
+		try {			
 			Properties properties = new Properties();
 			properties.setProperty("mail.host", "smtp.qq.com");
 			properties.setProperty("mail.transport.protocol", "smtp");
@@ -58,7 +59,7 @@ public class EmailRunnable implements Runnable {
 			e.printStackTrace();
 		}catch(MessagingException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 }

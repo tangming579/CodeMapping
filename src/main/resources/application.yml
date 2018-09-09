@@ -11,6 +11,12 @@ spring:
   jackson:
     serialization:
       write-dates-as-timestamps: true  #使用数值timestamp表示日期
+  security:
+  	basic:
+  		enabled= true
+  	user:
+  		name: admin
+  		password: admin  
       
 mybatis.configuration.mapUnderscoreToCamelCase: true
 
@@ -19,7 +25,7 @@ logging:
   level:
     ROOT: WARN
     com.tm: TRACE
-    com.tm.codemapping.dao: WARN
+    com.tm.codemapping.mapper: WARN
     
 #此项目的自定义属性  
 tutorial:

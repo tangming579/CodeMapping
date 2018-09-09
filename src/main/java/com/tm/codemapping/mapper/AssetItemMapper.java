@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.tm.codemapping.bean.*;
 
 @Repository
-public interface OverviewMapper {
+public interface AssetItemMapper {
 
 	@Select("select * from asset_item")
     public List<AssetItem> getAll();

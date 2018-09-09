@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.tm.codemapping.dao.OverviewDao" >
+<mapper namespace="com.tm.codemapping.mapper.AssetItemMapper" >
   
-  <insert id="insert" parameterType="com.tm.codemapping.pojo.AssetItemPojo" 
+  <insert id="insert" parameterType="com.tm.codemapping.bean.AssetItem" 
   			useGeneratedKeys="true" keyProperty="id">
     insert into asset_item (id, name )
     		values (#{id}, #{name} )
   </insert>
   
-  <update id="update" parameterType="com.tm.codemapping.pojo.AssetItemPojo">
+  <update id="update" parameterType="com.tm.codemapping.bean.AssetItem">
     update asset_item set name=#{name}, id=#{id} where id=#{id}
   </update>
   

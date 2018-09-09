@@ -7,32 +7,32 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tm.codemapping.bean.AssetItem;
-import com.tm.codemapping.mapper.OverviewMapper;
+import com.tm.codemapping.mapper.AssetItemMapper;
 
 
 @Service
 public class AssetItemService {
 
-	@Autowired private OverviewMapper overviewDao;
+	@Autowired private AssetItemMapper assetItemMapper;
 	
 	@Transactional(readOnly=true)
     public List<AssetItem> getAll() {
 
-		List<AssetItem> list = overviewDao.getAll();
+		List<AssetItem> list = assetItemMapper.getAll();
 		//List<AssetItemPojo> list=null;
         return list;
     }
 	
 	@Transactional(readOnly=true)
 	public AssetItem getItemById(String id) {
-		AssetItem item = overviewDao.getOneById(id);
+		AssetItem item = assetItemMapper.getOneById(id);
 		//AssetItemPojo item = new AssetItemPojo();
 		return item;
 	}
 	
 	@Transactional(readOnly=false)
 	public AssetItem insertItem(String name,String number) {
-		AssetItem item = overviewDao.insertOne(name,number);
+		AssetItem item = assetItemMapper.insertOne(name,number);
 		//AssetItemPojo item = new AssetItemPojo();
 		return item;
 	}

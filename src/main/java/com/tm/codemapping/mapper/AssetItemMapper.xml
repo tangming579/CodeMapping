@@ -2,6 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.tm.codemapping.mapper.AssetItemMapper" >
   
+  <select id="getAll" parameterType="com.tm.codemapping.bean.AssetItem" resultType="hashmap">
+   select * from asset_item
+  </select>
   <insert id="insert" parameterType="com.tm.codemapping.bean.AssetItem" 
   			useGeneratedKeys="true" keyProperty="id">
     insert into asset_item (id, name )

@@ -31,9 +31,13 @@ public class ValuesController {
 	
 	@GetMapping
 	@ApiOperation(value="获取资产列表", notes="")
-    public List<AssetItem> getAll() {
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "pageNum", value = "页数", required = true,paramType="query", dataType = "int"),
+		@ApiImplicitParam(name = "pageSize", value = "页长", required = true,paramType="query", dataType = "int")
+	})
+    public List<AssetItem> getAll(int pageNum,int pageSize) {
 		
-		List<AssetItem> items = assetItemService.getAll();		
+		List<AssetItem> items = assetItemService.getAll(pageNum,pageSize);		
 		return items;
     }        
     

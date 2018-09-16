@@ -12,7 +12,6 @@ import com.tm.codemapping.bean.*;
 @Repository
 public interface AssetItemMapper {
 
-	@Select("select * from asset_item")
     public List<AssetItem> getAll();
 	
 	public int update(AssetItem item);

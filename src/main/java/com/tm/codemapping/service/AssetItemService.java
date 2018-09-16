@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.pagehelper.PageHelper;
 import com.tm.codemapping.bean.AssetItem;
 import com.tm.codemapping.mapper.AssetItemMapper;
 
@@ -16,10 +17,9 @@ public class AssetItemService {
 	@Autowired private AssetItemMapper assetItemMapper;
 	
 	@Transactional(readOnly=true)
-    public List<AssetItem> getAll() {
-
-		List<AssetItem> list = assetItemMapper.getAll();
-		//List<AssetItemPojo> list=null;
+    public List<AssetItem> getAll(int pageNum,int pageSize) {
+		PageHelper.startPage(pageNum, pageSize);
+		List<AssetItem> list = assetItemMapper.getAll();		
         return list;
     }
 	

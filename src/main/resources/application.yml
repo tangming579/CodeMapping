@@ -12,15 +12,9 @@ spring:
     serialization:
       write-dates-as-timestamps: true  #使用数值timestamp表示日期
 
-security:
-  user:
-    name: admin
-    password: admin
-
-mybatis: 
-  configuration: 
-    mapUnderscoreToCamelCase: true
-    classpath: resources/mybatis-config.xml
+mybatis:
+  check-config-location: true
+  config-location: classpath:/mybatis-config.xml
 
 logging:
   file: target/app.log

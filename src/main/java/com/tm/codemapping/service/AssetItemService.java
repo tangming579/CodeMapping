@@ -17,8 +17,8 @@ public class AssetItemService {
 	@Autowired private AssetItemMapper assetItemMapper;
 	
 	@Transactional(readOnly=true)
-    public List<AssetItem> getAll(int pageNum,int pageSize) {
-		PageHelper.startPage(pageNum, pageSize);
+    public List<AssetItem> getAll(int start,int limit) {
+		PageHelper.startPage(start, limit);
 		List<AssetItem> list = assetItemMapper.getAll();		
         return list;
     }

@@ -1,4 +1,4 @@
-package com.tm.codemapping.mapper;
+package com.tm.system.mapper;
 
 public class RoleResourcesMapper {
 

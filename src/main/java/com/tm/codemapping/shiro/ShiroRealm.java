@@ -24,7 +24,7 @@ import com.tm.system.bean.User;
 import com.tm.system.service.RoleService;
 import com.tm.system.service.UserService;
 
-public class MyRealm extends AuthorizingRealm {
+public class ShiroRealm extends AuthorizingRealm {
 
 	@Autowired
     private UserService userService;

@@ -8,6 +8,11 @@ spring:
     url: jdbc:mysql://localhost:3306/soho3q?characterEncoding=UTF-8
     username: root
     password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
   jackson:
     serialization:
       write-dates-as-timestamps: true  #使用数值timestamp表示日期

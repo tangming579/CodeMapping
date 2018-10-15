@@ -18,9 +18,30 @@ spring:
       write-dates-as-timestamps: true  #使用数值timestamp表示日期
 
 mybatis:
+  # type-aliases扫描路径
+  type-aliases-package: com.tm.codemapping.bean,com.tm.system.bean
   check-config-location: true
   config-location: classpath:/mybatis-config.xml
-
+  mapper-locations: classpath:mapper/*.xml
+  property:
+    order: BEFORE
+  configuration:
+    jdbc-type-for-null: null
+    
+#mappers 多个接口时逗号隔开
+mapper:
+  mappers: com.tm.codemapping.config.MyMapper
+  not-empty: false
+  identity: MYSQL
+  order: after
+ 
+#pagehelper
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+      
 logging:
   file: target/app.log
   level:

@@ -53,8 +53,7 @@ public class ValuesController {
         return ts;
     }
 	
-	@ResponseBody
-	@PostMapping("/updatePassword")
+	@PostMapping("/insertOne")
 	@ApiOperation(value="创建特定资产", notes="")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = "name", value = "资产名称", required = true,paramType="query", dataType = "String"),

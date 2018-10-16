@@ -64,4 +64,20 @@ public class ValuesController {
 		
 		return item;
 	}
+	
+	@PostMapping("/UpdateOne")
+	@ApiOperation(value="更新特定资产", notes="")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name = "id", value = "资产id", required = true,paramType="query", dataType = "String"),
+		@ApiImplicitParam(name = "name", value = "资产名称", required = true,paramType="query", dataType = "String"),
+		@ApiImplicitParam(name = "number", value = "资产编号", required = false,paramType="query", dataType = "String")
+	})
+	public AssetItem updateOne(@RequestParam(value="id",required=true) String id,@RequestParam(value="name",required=false) String name,@RequestParam(name="number",required=false) String number) {
+		AssetItem ts = assetItemService.getItemById(id);
+        if(ts == null) {
+            throw new ResourceNotFoundException();
+        }
+        AssetItem item = assetItemService.updateItem(ts);
+		return item;
+	}
 }

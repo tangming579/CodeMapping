@@ -3,6 +3,7 @@ package com.tm.codemapping.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.tm.codemapping.bean.*;
 
 @Repository
+@Mapper
 public interface AssetItemMapper {
 
     public List<AssetItem> getAll();

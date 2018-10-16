@@ -36,4 +36,10 @@ public class AssetItemService {
 		//AssetItemPojo item = new AssetItemPojo();
 		return item;
 	}
+	
+	@Transactional(readOnly=false)
+	public AssetItem updateItem(AssetItem item) {		
+		assetItemMapper.update(item);
+		return item;
+	}
 }

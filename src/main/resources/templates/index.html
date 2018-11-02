@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row">
+    <div>
+        <form>
+            <div style="margin-left:50px;margin-top:60px">
+                <label>服务调试：</label>
+                <input type="submit" value="Submit" class="btn btn-default" />
+                <br>
+                <br>
+                <div>
+                    <textarea asp-for="JsonStr" style="margin:0px;min-height:450px;min-width:600px">
+                       
+                    </textarea>                    
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+<p>单文件上传</p>
+<form action="upload" method="POST" enctype="multipart/form-data">
+    文件：<input type="file" name="file"/>
+    <input type="submit"/>
+</form>
+<hr/>
+<p>文件下载</p>
+<a href="download">下载文件</a>
+<hr/>
+<p>多文件上传</p>
+<form method="POST" enctype="multipart/form-data" action="batch">
+    <p>文件1：<input type="file" name="file"/></p>
+    <p>文件2：<input type="file" name="file"/></p>
+    <p><input type="submit" value="上传"/></p>
+</form>
+</div>
+</body>

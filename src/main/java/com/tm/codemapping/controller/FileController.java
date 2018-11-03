@@ -34,7 +34,7 @@ public class FileController {
             // 获取文件的后缀名
             String suffixName = fileName.substring(fileName.lastIndexOf("."));           
             // 设置文件存储路径
-            String filePath = System.getProperty("user.dir") + "resources/static/upload/";
+            String filePath = System.getProperty("user.dir") + "/src/main/resources/static/upload/";
             String path = filePath + fileName;
             File dest = new File(path);
             // 检测是否存在目录
@@ -58,7 +58,7 @@ public class FileController {
         BufferedOutputStream stream = null;
         for (int i = 0; i < files.size(); ++i) {
             file = files.get(i);
-            String filePath = System.getProperty("user.dir") + "resources/static/upload/";
+            String filePath = System.getProperty("user.dir") + "/src/main/resources/static/upload/";
             if (!file.isEmpty()) {
                 try {
                     byte[] bytes = file.getBytes();
@@ -84,7 +84,7 @@ public class FileController {
         String fileName = "favicon.ico";// 文件名
         if (fileName != null) {
             //设置文件路径
-        	String realPath = System.getProperty("user.dir") + "/resources/static/";
+        	String realPath = System.getProperty("user.dir") + "/src/main/resources/static/";
             File file = new File(realPath , fileName);
             //File file = new File(realPath , fileName);
             if (file.exists()) {
@@ -121,6 +121,9 @@ public class FileController {
                         }
                     }
                 }
+            }
+            else {
+            	return realPath + "文件不存在";
             }
         }
         return "下载失败";

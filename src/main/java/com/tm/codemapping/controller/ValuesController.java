@@ -14,7 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tm.codemapping.bean.AssetItem;
+import com.tm.codemapping.bean.Result;
+import com.tm.codemapping.common.ResultEnum;
+import com.tm.codemapping.execption.ResultException;
 import com.tm.codemapping.service.AssetItemService;
+import com.tm.codemapping.utils.ResultUtils;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -35,10 +39,12 @@ public class ValuesController {
 		@ApiImplicitParam(name = "start", value = "页数", required = true,paramType="query", dataType = "int"),
 		@ApiImplicitParam(name = "limit", value = "页长", required = true,paramType="query", dataType = "int")
 	})
-    public List<AssetItem> getAll(int start,int limit) {
+    public Result<List<AssetItem>> getAll(int start,int limit) throws Exception{
 		
+		if(start<0)
+			throw new ResultException(ResultEnum.LIMIT_ERROR);
 		List<AssetItem> items = assetItemService.getAll(start,limit);		
-		return items;
+		return ResultUtils.success(items);
     }        
     
 	@ApiOperation(value="获取特定资产", notes="")

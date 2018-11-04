@@ -4,11 +4,11 @@ package com.tm.codemapping.bean;
 public class Result<T> {
 
 	//错误码
-	public Integer code;
+	private Integer code;
 	//提示信息
-	public String msg;
+	private String msg;
 	//具体内容
-	public T content;
+	private T content;
 	
 	public Integer getCode() {
 		return code;

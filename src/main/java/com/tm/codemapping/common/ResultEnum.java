@@ -5,7 +5,8 @@ public enum ResultEnum {
 	UNKONW_ERROR(-1,"未知错误"),
 	SUCCESS(0,"成功"),
 	NOTNULL_ERROR(100,"值不能为空"),
-	LIMIT_ERROR(101,"值不在约定范围内")
+	LIMIT_ERROR(101,"值不在约定范围内"),
+	IDNOTFOUND_ERROR(102,"id不存在")
 	;
 	private Integer code;
 	

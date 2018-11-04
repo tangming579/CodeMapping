@@ -1,25 +1,25 @@
 package com.tm.codemapping.utils;
 
-import com.tm.codemapping.bean.Result;
+import com.tm.codemapping.bean.ResultBean;
 
 public class ResultUtils {
 
-	public static Result success(Object obj) {
-		Result result=new Result();
+	public static ResultBean success(Object obj) {
+		ResultBean result=new ResultBean();
 		result.setCode(0);
 		result.setMsg("成功");
 		result.setContent(obj);
 		return result;
 	}
 	
-	public static Result error(int code, String msg) {
-		Result result=new Result();
+	public static ResultBean error(int code, String msg) {
+		ResultBean result=new ResultBean();
 		result.setCode(code);
 		result.setMsg(msg);
 		return result;
 	}
 	
-	public static Result success() {
+	public static ResultBean success() {
 		return success(null);
 	}
 }

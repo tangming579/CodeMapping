@@ -1,7 +1,7 @@
 package com.tm.codemapping.bean;
 
 //http请求返回的最外层对象
-public class Result<T> {
+public class ResultBean<T> {
 
 	//错误码
 	private Integer code;

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tm.codemapping.bean.AssetItem;
-import com.tm.codemapping.bean.Result;
+import com.tm.codemapping.bean.ResultBean;
 import com.tm.codemapping.common.ResultEnum;
 import com.tm.codemapping.execption.ResultException;
 import com.tm.codemapping.service.AssetItemService;
@@ -28,18 +28,19 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api/values")
-@Api(value = "Swagger注解控制器")
+@Api(value = "资产相关操作")
 public class ValuesController {
 
 	@Autowired AssetItemService assetItemService;
 	
+	@SuppressWarnings("unchecked")
 	@GetMapping
 	@ApiOperation(value="获取资产列表", notes="")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = "start", value = "页数", required = true,paramType="query", dataType = "int"),
 		@ApiImplicitParam(name = "limit", value = "页长", required = true,paramType="query", dataType = "int")
 	})
-    public Result<List<AssetItem>> getAll(int start,int limit) throws Exception{
+    public ResultBean<List<AssetItem>> getAll(int start,int limit) throws Exception{
 		
 		if(start<0)
 			throw new ResultException(ResultEnum.LIMIT_ERROR);
@@ -50,11 +51,11 @@ public class ValuesController {
 	@ApiOperation(value="获取特定资产", notes="")
 	@ApiImplicitParam(name = "id", value = "资产ID",paramType = "path", dataType = "String")
 	@RequestMapping(value = "/{id}", method=  {RequestMethod.POST,RequestMethod.GET})
-    public AssetItem getOne(@PathVariable String id){
+    public AssetItem getOne(@PathVariable String id) throws Exception{
        
 		AssetItem ts = assetItemService.getItemById(id);
         if(ts == null) {
-            throw new ResourceNotFoundException();
+            throw new ResultException(ResultEnum.IDNOTFOUND_ERROR);
         }
         return ts;
     }

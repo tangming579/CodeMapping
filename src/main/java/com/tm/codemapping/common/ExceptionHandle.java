@@ -19,7 +19,7 @@ public class ExceptionHandle {
 			ResultException resultException = (ResultException)e;
 			return ResultUtils.error(resultException.getCode(), resultException.getMessage());
 		}else {
-			return ResultUtils.error(-1, "");
+			return ResultUtils.error(-1, e.getMessage());
 		}			
 	}
 }

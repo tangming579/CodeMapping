@@ -18,7 +18,7 @@ public class BasicSettingService {
 		return building;
 	}
 	
-	@Transactional(readOnly=true)
+	@Transactional(readOnly=false)
 	public int deleteBuilding(String id) {
 	
 		return	basicSettingMapper.deleteBuilding(id);			

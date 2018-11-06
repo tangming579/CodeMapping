@@ -18,17 +18,19 @@ public interface BasicSettingMapper {
 	@Select("insert into asset_building (id,name,vaild) values(uuid(),#{name},1)")
 	public SettingBuildingBean insertBuilding(@Param("name")String name);
 	
-	public int deleteBuilding(SettingBuildingBean building);
+	public int deleteBuilding(@Param("id")String id);
 	
 	public int updateBuilding(SettingBuildingBean building);
 	
-	public SettingFloorBean insertFloor(String buildingId,String name);
+	@Select("insert into asset_floor (id,name,vaild) values(uuid(),#{name},1)")
+	public SettingFloorBean insertFloor(@Param("buildingId")String buildingId,@Param("name")String name);
 	
-	public int deleteFloor(String id);
+	public int deleteFloor(@Param("buildingId")String id);
 	
 	public int updateFloor(String buildingId,String id,String name);
 	
-	public SettingAreaBean insertArea(String floorId,String name);
+	@Select("insert into asset_area (id,name,vaild) values(uuid(),#{name},1)")
+	public SettingAreaBean insertArea(@Param("floorId")String floorId,@Param("name")String name);
 	
 	public int deleteArea(String id);
 	

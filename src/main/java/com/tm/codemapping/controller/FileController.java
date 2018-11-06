@@ -20,7 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import io.swagger.annotations.Api;
+
 @RestController
+@Api(tags = "文件操作")
 public class FileController {
 
 	@RequestMapping(value="/upload")

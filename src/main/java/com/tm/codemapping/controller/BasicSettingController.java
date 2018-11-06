@@ -18,7 +18,8 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@Api(value = "基本信息操作")
+@RequestMapping("/api/basicsetting")
+@Api(tags = "基本信息操作")
 public class BasicSettingController {
 
 	 @Autowired BasicSettingService basicSettingService;

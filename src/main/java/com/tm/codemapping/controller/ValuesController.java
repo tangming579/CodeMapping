@@ -28,7 +28,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/api/values")
-@Api(value = "资产相关操作")
+@Api(tags = "资产相关操作")
 public class ValuesController {
 
 	@Autowired AssetItemService assetItemService;

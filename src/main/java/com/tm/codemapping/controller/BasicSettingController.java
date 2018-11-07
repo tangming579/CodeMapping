@@ -1,5 +1,7 @@
 package com.tm.codemapping.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tm.codemapping.bean.ResultBean;
+import com.tm.codemapping.bean.SettingBuildingBean;
 import com.tm.codemapping.common.ResultEnum;
 import com.tm.codemapping.execption.ResultException;
 import com.tm.codemapping.service.BasicSettingService;
@@ -48,10 +51,10 @@ public class BasicSettingController {
 		 return ResultUtils.success();
 	 }
 	 
-	 @ApiOperation(value="删除建筑", notes="")
+
 	 @RequestMapping(value="getBuildingFloorAreaList",method= RequestMethod.POST)
 	 public ResultBean getBuildingFloorAreaList() throws Exception {		 
-		 basicSettingService.deleteBuilding("");
-		 return ResultUtils.success();
+		 int result = basicSettingService.getBuildingFloorAreaList();
+		 return ResultUtils.success(result);
 	 }
 }

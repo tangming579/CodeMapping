@@ -5,7 +5,19 @@
   <delete id="deleteBuilding" parameterType="String">
   	delete from asset_building where id=#{id}
   </delete>
-  <select id="getBuildingFloorAreaList">
-  
+  <select id="getBuildingFloorAreaList" resultMap="buildingResultMap">
+    select * from asset_building b,asset_floor f,asset_area a where a.floorId=f.id and f.buildingId=b.id
   </select>
+  <resultMap type="com.tm.codemapping.bean.settingbuildingbean" id="buildingResultMap">
+    <id property="id" column="id"/>
+    <result property="buildingName" column="name"/>
+    <collection property="floors" ofType="com.tm.codemapping.bean.settingfloorbean">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <collection property="areas" ofType="com.tm.codemapping.bean.settingareabean">
+        	<id property="id" column="id"/>
+        	<result property="name" column="name"/>
+     </collection>
+     </collection>
+  </resultMap>
 </mapper>

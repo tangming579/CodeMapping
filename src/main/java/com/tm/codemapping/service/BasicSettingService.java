@@ -1,5 +1,7 @@
 package com.tm.codemapping.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +13,11 @@ import com.tm.codemapping.mapper.BasicSettingMapper;
 public class BasicSettingService {
 
 	@Autowired BasicSettingMapper basicSettingMapper;
+	
+	public int getBuildingFloorAreaList(){
+		
+		return basicSettingMapper.getBuildingFloorAreaList();
+	}
 	
 	@Transactional(readOnly=false)
 	public SettingBuildingBean insertBuilding(String name) {

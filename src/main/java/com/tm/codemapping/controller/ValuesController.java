@@ -7,12 +7,14 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alibaba.fastjson.JSONObject;
 import com.tm.codemapping.bean.AssetItem;
 import com.tm.codemapping.bean.ResultBean;
 import com.tm.codemapping.common.ResultEnum;
@@ -34,7 +36,7 @@ public class ValuesController {
 	@Autowired AssetItemService assetItemService;
 	
 	@SuppressWarnings("unchecked")
-	@GetMapping
+	@PostMapping("/getlist")
 	@ApiOperation(value="获取资产列表", notes="")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = "start", value = "页数", required = true,paramType="query", dataType = "int"),
@@ -48,6 +50,7 @@ public class ValuesController {
 		return ResultUtils.success(items);
     }        
     
+	@PostMapping("/getone")
 	@ApiOperation(value="获取特定资产", notes="")
 	@ApiImplicitParam(name = "id", value = "资产ID",paramType = "path", dataType = "String")
 	@RequestMapping(value = "/{id}", method=  {RequestMethod.POST,RequestMethod.GET})
@@ -86,5 +89,15 @@ public class ValuesController {
         }
         AssetItem item = assetItemService.updateItem(ts);
 		return item;
+	}
+	
+
+	@ApiOperation(value="json总入口", notes="")
+	@ResponseBody
+	@RequestMapping(value = "/post", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public ResultBean restMethodCore(@RequestBody JSONObject jsonParam) {
+		
+		String method=jsonParam.getString("method");
+		return ResultUtils.success(method);
 	}
 }

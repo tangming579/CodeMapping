@@ -5,5 +5,7 @@
   <delete id="deleteBuilding" parameterType="String">
   	delete from asset_building where id=#{id}
   </delete>
+  <select id="getBuildingFloorAreaList">
   
+  </select>
 </mapper>

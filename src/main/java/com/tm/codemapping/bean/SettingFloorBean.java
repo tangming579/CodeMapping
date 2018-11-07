@@ -1,10 +1,20 @@
 package com.tm.codemapping.bean;
 
+import java.util.List;
+
 public class SettingFloorBean {
 	
 	private String id;
 	private String name;
 	private String buildingId;
+	private List<SettingAreaBean> areas;
+	
+	public List<SettingAreaBean> getAreas() {
+		return areas;
+	}
+	public void setAreas(List<SettingAreaBean> areas) {
+		this.areas = areas;
+	}
 	public String getId() {
 		return id;
 	}

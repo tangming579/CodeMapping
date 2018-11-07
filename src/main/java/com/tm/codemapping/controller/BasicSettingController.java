@@ -47,4 +47,11 @@ public class BasicSettingController {
 		 basicSettingService.deleteBuilding(id);
 		 return ResultUtils.success();
 	 }
+	 
+	 @ApiOperation(value="删除建筑", notes="")
+	 @RequestMapping(value="getBuildingFloorAreaList",method= RequestMethod.POST)
+	 public ResultBean getBuildingFloorAreaList() throws Exception {		 
+		 basicSettingService.deleteBuilding("");
+		 return ResultUtils.success();
+	 }
 }

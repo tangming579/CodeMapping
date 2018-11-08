@@ -6,18 +6,23 @@
   	delete from asset_building where id=#{id}
   </delete>
   <select id="getBuildingFloorAreaList" resultMap="buildingResultMap">
-    select * from asset_building b,asset_floor f,asset_area a where a.floorId=f.id and f.buildingId=b.id
+    select * from asset_building
   </select>
-  <resultMap type="com.tm.codemapping.bean.settingbuildingbean" id="buildingResultMap">
+  <resultMap type="com.tm.codemapping.bean.SettingBuildingBean" id="buildingResultMap">
     <id property="id" column="id"/>
-    <result property="buildingName" column="name"/>
-    <collection property="floors" ofType="com.tm.codemapping.bean.settingfloorbean">
+    <result property="name" column="name"/>
+    <collection property="floors" ofType="com.tm.codemapping.bean.SettingFloorBean" column="id" select="selectFloorByBuilding">
+      <id property="id" column="id"/>
+      <collection property="areas" ofType="com.tm.codemapping.bean.SettingAreaBean" column="id" select="selectAreaByFloor">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
-        <collection property="areas" ofType="com.tm.codemapping.bean.settingareabean">
-        	<id property="id" column="id"/>
-        	<result property="name" column="name"/>
-     </collection>
-     </collection>
+      </collection>
+    </collection>
   </resultMap>
+  <select id="selectFloorByBuilding" resultType="com.tm.codemapping.bean.SettingFloorBean">
+    select * from asset_floor where buildingId = #{id}
+  </select>
+  <select id="selectAreaByFloor" resultType="com.tm.codemapping.bean.SettingAreaBean">
+    select * from asset_area where floorId = #{id}
+  </select>
 </mapper>

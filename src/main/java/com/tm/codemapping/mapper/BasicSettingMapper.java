@@ -15,7 +15,7 @@ import com.tm.codemapping.bean.SettingFloorBean;
 @Mapper
 public interface BasicSettingMapper {
 
-	public int getBuildingFloorAreaList();
+	public List<SettingBuildingBean> getBuildingFloorAreaList();
 	
 	@Select("insert into asset_building (id,name,vaild) values(uuid(),#{name},1)")
 	public SettingBuildingBean insertBuilding(@Param("name")String name);

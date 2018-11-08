@@ -14,7 +14,7 @@ public class BasicSettingService {
 
 	@Autowired BasicSettingMapper basicSettingMapper;
 	
-	public int getBuildingFloorAreaList(){
+	public List<SettingBuildingBean> getBuildingFloorAreaList(){
 		
 		return basicSettingMapper.getBuildingFloorAreaList();
 	}

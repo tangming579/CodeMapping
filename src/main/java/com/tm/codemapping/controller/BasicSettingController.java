@@ -54,7 +54,7 @@ public class BasicSettingController {
 
 	 @RequestMapping(value="getBuildingFloorAreaList",method= RequestMethod.POST)
 	 public ResultBean getBuildingFloorAreaList() throws Exception {		 
-		 int result = basicSettingService.getBuildingFloorAreaList();
+		 List<SettingBuildingBean> result = basicSettingService.getBuildingFloorAreaList();
 		 return ResultUtils.success(result);
 	 }
 }

@@ -6,6 +6,7 @@ public class SettingBuildingBean {
 
 	private String id;
 	private String name;
+	private Integer vaild;
 	private List<SettingFloorBean> floors;
 	
 	public List<SettingFloorBean> getFloors() {
@@ -25,5 +26,11 @@ public class SettingBuildingBean {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public Integer getVaild() {
+		return vaild;
+	}
+	public void setVaild(Integer vaild) {
+		this.vaild = vaild;
 	}
 }

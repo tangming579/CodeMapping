@@ -6,16 +6,43 @@
   	delete from asset_building where id=#{id}
   </delete>
   <select id="getBuildingFloorAreaList" resultMap="buildingResultMap">
-    select * from asset_building
+    select
+    	b.id   		 as  buildingId,
+    	b.name 		 as  buildingName,   
+    	b.vaild		 as  buildingVaild, 	
+    	f.id   		 as  floorId,
+    	f.name 		 as  floorName,
+    	f.buildingId as  floorBuildingId,
+    	f.vaild		 as  floorVaild,
+    	a.id   		 as  areaId,
+    	a.floorId    as  areaFloorId,
+    	a.buildingId as  areaBuildingId,
+    	a.name 	     as  areaName,
+    	a.number     as  areaNumber,
+    	a.remark     as  areaRemark,
+    	a.vaild		 as  areaVaild
+    	from asset_building b
+    	left join asset_floor f on f.buildingId = b.id
+    	left join asset_area a  on a.floorId = f.id
+    	where b.vaild = 0
   </select>
   <resultMap type="com.tm.codemapping.bean.SettingBuildingBean" id="buildingResultMap">
-    <id property="id" column="id"/>
-    <result property="name" column="name"/>
-    <collection property="floors" ofType="com.tm.codemapping.bean.SettingFloorBean" column="id" select="selectFloorByBuilding">
-      <id property="id" column="id"/>
-      <collection property="areas" ofType="com.tm.codemapping.bean.SettingAreaBean" column="id" select="selectAreaByFloor">
-        <id property="id" column="id"/>
-        <result property="name" column="name"/>
+    <id property="id" column="buildingId"/>
+    <result property="name" column="buildingName"/>
+    <result property="vaild" column="buildingVaild"/>
+    <collection property="floors" ofType="com.tm.codemapping.bean.SettingFloorBean">
+      <id property="id" column="floorId"/>
+      <result property="name" column="floorName"/>
+      <result property="buildingId" column="floorBuildingId"/>
+      <result property="vaild" column="floorVaild"/>
+      <collection property="areas" ofType="com.tm.codemapping.bean.SettingAreaBean">
+        <id property="id" column="areaId"/>
+        <result property="name" column="areaName"/>
+        <result property="floorId" column="areaFloorId"/>
+        <result property="buildingId" column="areaBuildingId"/>
+        <result property="number" column="areaNumber"/>
+        <result property="remark" column="areaRemark"/>
+        <result property="vaild" column="areaVaild"/>
       </collection>
     </collection>
   </resultMap>

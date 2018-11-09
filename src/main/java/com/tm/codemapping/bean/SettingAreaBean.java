@@ -8,6 +8,8 @@ public class SettingAreaBean {
 	private String buildingId;
 	private String number;
 	private String remark;
+	private Integer vaild;
+	
 	public String getId() {
 		return id;
 	}
@@ -43,6 +45,12 @@ public class SettingAreaBean {
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+	public Integer getVaild() {
+		return vaild;
+	}
+	public void setVaild(Integer vaild) {
+		this.vaild = vaild;
 	}
 	
 }

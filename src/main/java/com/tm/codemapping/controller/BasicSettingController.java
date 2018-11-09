@@ -29,6 +29,14 @@ public class BasicSettingController {
 
 	 @Autowired BasicSettingService basicSettingService;
 	 
+	 
+	 @ApiOperation(value="获取建筑、楼层、区域集合", notes="")
+	 @RequestMapping(value="getBuildingFloorAreaList",method= RequestMethod.POST)
+	 public ResultBean getBuildingFloorAreaList() throws Exception {		 
+		 List<SettingBuildingBean> result = basicSettingService.getBuildingFloorAreaList();
+		 return ResultUtils.success(result);
+	 }
+	 
 	 @ApiOperation(value="新建建筑", notes="")
 	 @ApiImplicitParam(name = "name", value = "建筑名称",paramType = "query", dataType = "String")
 	 @RequestMapping(value="insertBuilding",method= RequestMethod.POST)
@@ -51,10 +59,17 @@ public class BasicSettingController {
 		 return ResultUtils.success();
 	 }
 	 
+	 @ApiOperation(value="更新建筑", notes="")
+	 @RequestMapping(value="updateBuilding",method= RequestMethod.POST)
+	 public ResultBean updateBuilding(SettingBuildingBean building) throws Exception {
 
-	 @RequestMapping(value="getBuildingFloorAreaList",method= RequestMethod.POST)
-	 public ResultBean getBuildingFloorAreaList() throws Exception {		 
-		 List<SettingBuildingBean> result = basicSettingService.getBuildingFloorAreaList();
-		 return ResultUtils.success(result);
+		 Integer result = basicSettingService.updateBuilding(building);
+		 if(result == 1) {
+			 return ResultUtils.success();
+		 }		 
+		 else {
+			 throw new ResultException(ResultEnum.IDNOTFOUND_ERROR);
+		 }
 	 }
+	
 }

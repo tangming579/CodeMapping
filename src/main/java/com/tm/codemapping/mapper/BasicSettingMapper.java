@@ -22,7 +22,7 @@ public interface BasicSettingMapper {
 	
 	public int deleteBuilding(@Param("id")String id);
 	
-	public int updateBuilding(SettingBuildingBean building);
+	public int updateBuilding(@Param(value="building")SettingBuildingBean building);
 	
 	@Select("insert into asset_floor (id,name,vaild) values(uuid(),#{name},1)")
 	public SettingFloorBean insertFloor(@Param("buildingId")String buildingId,@Param("name")String name);

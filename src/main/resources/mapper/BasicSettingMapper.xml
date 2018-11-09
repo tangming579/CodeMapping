@@ -52,4 +52,16 @@
   <select id="selectAreaByFloor" resultType="com.tm.codemapping.bean.SettingAreaBean">
     select * from asset_area where floorId = #{id}
   </select>
+  <update id="updateBuilding">
+    update asset_building
+    <set>
+      <if test="building.name != null">
+         name = #{building.name},
+      </if>
+      <if test="building.id != null">
+         id = #{building.id}
+      </if>
+    </set>
+    where id = #{building.id}
+  </update>
 </mapper>

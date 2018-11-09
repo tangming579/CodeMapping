@@ -26,14 +26,11 @@ public class BasicSettingService {
 	}
 	
 	@Transactional(readOnly=false)
-	public int deleteBuilding(String id) {
-	
+	public int deleteBuilding(String id) {	
 		return	basicSettingMapper.deleteBuilding(id);			
-	}
-	
-	@Transactional(readOnly=true)
-	public SettingBuildingBean updateBuilding(SettingBuildingBean building) {
-		basicSettingMapper.updateBuilding(building);		
-		return building;
+	}	
+
+	public int updateBuilding(SettingBuildingBean building) {
+	   return basicSettingMapper.updateBuilding(building);		
 	}
 }

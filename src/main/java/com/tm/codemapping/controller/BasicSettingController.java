@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tm.codemapping.bean.ResultBean;
@@ -86,13 +87,15 @@ public class BasicSettingController {
 		 return ResultUtils.success();
 	 }
 	 @ApiOperation(value="更新楼层", notes="")
-	 @ApiImplicitParam(name = "id", value = "楼层id",paramType = "query", dataType = "String")
 	 @RequestMapping(value="updateFloor",method= RequestMethod.POST)
 	 public ResultBean updateFloor(String buildingId,String id,String name) throws Exception {
 		 if(StringUtils.isNullOrWhiteSpace(buildingId)||StringUtils.isNullOrWhiteSpace(id)) {
 			 throw new ResultException(ResultEnum.NOTNULL_ERROR);
 		 }
-		 basicSettingService.updateFloor(buildingId,id,name);
-		 return ResultUtils.success();
+		 Integer result = basicSettingService.updateFloor(buildingId,id,name);
+		 if(result==1) {
+			 return ResultUtils.success();
+		 }else
+			 throw new ResultException(ResultEnum.IDNOTFOUND_ERROR);
 	 }
 }

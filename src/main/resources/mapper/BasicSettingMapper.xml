@@ -74,9 +74,13 @@
   	<selectKey keyProperty="count" resultType="int" order="BEFORE">
       select count(*) from asset_building where id = #{buildingId}
     </selectKey>
+    update asset_floor
 	<if test="count > 0">
-      update asset_floor set buildingId = #{buildingId}, name = #{name}  
-      where id=#{id}
+       set buildingId = #{buildingId}, name = #{name}       
     </if>
+    <if test="count == 0">
+       set name = #{name}       
+    </if>
+     where id=#{id}
   </update>
 </mapper>

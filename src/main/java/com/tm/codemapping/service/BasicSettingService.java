@@ -33,4 +33,12 @@ public class BasicSettingService {
 	public int updateBuilding(SettingBuildingBean building) {
 	   return basicSettingMapper.updateBuilding(building);		
 	}
+	
+	public int insertFloor(String buildingId,String name) {
+		return basicSettingMapper.insertFloor(buildingId, name);
+	}
+	
+	public int updateFloor(String buildingId,String id,String name) {
+		return basicSettingMapper.updateFloor(buildingId, id, name);
+	}
 }

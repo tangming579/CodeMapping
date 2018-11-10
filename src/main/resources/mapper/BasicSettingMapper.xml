@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.tm.codemapping.mapper.BasicSettingMapper" >
-  
-  <delete id="deleteBuilding" parameterType="String">
-  	delete from asset_building where id=#{id}
-  </delete>
+   
   <select id="getBuildingFloorAreaList" resultMap="buildingResultMap">
     select
     	b.id   		 as  buildingId,
@@ -46,12 +43,12 @@
       </collection>
     </collection>
   </resultMap>
-  <select id="selectFloorByBuilding" resultType="com.tm.codemapping.bean.SettingFloorBean">
-    select * from asset_floor where buildingId = #{id}
-  </select>
-  <select id="selectAreaByFloor" resultType="com.tm.codemapping.bean.SettingAreaBean">
-    select * from asset_area where floorId = #{id}
-  </select>
+  <insert id="insertBuilding">
+    insert into asset_building (id,name,vaild) values(uuid(),#{name},1)
+  </insert>
+  <delete id="deleteBuilding" parameterType="String">
+  	delete from asset_building where id=#{id}
+  </delete>  
   <update id="updateBuilding">
     update asset_building
     <set>
@@ -63,5 +60,23 @@
       </if>
     </set>
     where id = #{building.id}
+  </update>
+  
+  <insert id="insertFloor">
+  	<selectKey keyProperty="count" resultType="int" order="BEFORE">
+      select count(*) from asset_building where id = #{buildingId}
+    </selectKey>
+	<if test="count > 0">
+      insert into asset_floor (id,buildingId,name,vaild) values(uuid(),#{buildingId},#{name},1)    
+    </if>
+  </insert>
+  <update id="updateFloor">
+  	<selectKey keyProperty="count" resultType="int" order="BEFORE">
+      select count(*) from asset_building where id = #{buildingId}
+    </selectKey>
+	<if test="count > 0">
+      update asset_floor set buildingId = #{buildingId}, name = #{name}  
+      where id=#{id}
+    </if>
   </update>
 </mapper>

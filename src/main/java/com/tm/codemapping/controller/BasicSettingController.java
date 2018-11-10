@@ -75,5 +75,24 @@ public class BasicSettingController {
 			 throw new ResultException(ResultEnum.IDNOTFOUND_ERROR);
 		 }
 	 }
-	
+	 @ApiOperation(value="新建楼层", notes="")
+	 @ApiImplicitParam(name = "id", value = "楼层id",paramType = "query", dataType = "String")
+	 @RequestMapping(value="insertFloor",method= RequestMethod.POST)
+	 public ResultBean insertFloor(String buildingId,String name) throws Exception {
+		 if(StringUtils.isNullOrWhiteSpace(buildingId)) {
+			 throw new ResultException(ResultEnum.NOTNULL_ERROR);
+		 }
+		 basicSettingService.insertFloor(buildingId,name);
+		 return ResultUtils.success();
+	 }
+	 @ApiOperation(value="更新楼层", notes="")
+	 @ApiImplicitParam(name = "id", value = "楼层id",paramType = "query", dataType = "String")
+	 @RequestMapping(value="updateFloor",method= RequestMethod.POST)
+	 public ResultBean updateFloor(String buildingId,String id,String name) throws Exception {
+		 if(StringUtils.isNullOrWhiteSpace(buildingId)||StringUtils.isNullOrWhiteSpace(id)) {
+			 throw new ResultException(ResultEnum.NOTNULL_ERROR);
+		 }
+		 basicSettingService.updateFloor(buildingId,id,name);
+		 return ResultUtils.success();
+	 }
 }

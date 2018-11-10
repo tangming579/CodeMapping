@@ -2,11 +2,18 @@ package com.tm.codemapping.bean;
 
 import java.util.List;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel
 public class SettingBuildingBean {
 
+	@ApiModelProperty(value = "建筑id")
 	private String id;
 	private String name;
 	private Integer vaild;
+	
+	@ApiModelProperty(hidden = true)
 	private List<SettingFloorBean> floors;
 	
 	public List<SettingFloorBean> getFloors() {

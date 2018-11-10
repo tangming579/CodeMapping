@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +22,7 @@ import com.tm.codemapping.utils.StringUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 @RestController
 @RequestMapping("/api/basicsetting")
@@ -59,10 +61,12 @@ public class BasicSettingController {
 		 return ResultUtils.success();
 	 }
 	 
-	 @ApiOperation(value="更新建筑", notes="")
-	 @RequestMapping(value="updateBuilding",method= RequestMethod.POST)
-	 public ResultBean updateBuilding(SettingBuildingBean building) throws Exception {
-
+	 @ApiOperation("更新建筑")
+	 @PostMapping("/updateBuilding")
+	 public ResultBean updateBuilding(@RequestBody @ApiParam(name="建筑对象",value="传入json格式",required=true) SettingBuildingBean building) throws Exception {
+		 //building=new SettingBuildingBean();
+		 //building.setName("ccc");
+		 //building.setId("47070245-e03b-11e8-a73b-b888e3f23ef9");
 		 Integer result = basicSettingService.updateBuilding(building);
 		 if(result == 1) {
 			 return ResultUtils.success();

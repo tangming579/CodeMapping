@@ -41,4 +41,12 @@ public class BasicSettingService {
 	public int updateFloor(String buildingId,String id,String name) {
 		return basicSettingMapper.updateFloor(buildingId, id, name);
 	}
+	
+	public int insertArea(String floorId,String name) {
+		return basicSettingMapper.insertArea(floorId, name);
+	}
+	
+	public int updateArea(String id,String buildingId,String name) {
+		return basicSettingMapper.updateArea(id, buildingId, name);
+	}
 }

@@ -83,4 +83,25 @@
     </if>
      where id=#{id}
   </update>
+  
+  <insert id="insertArea">
+  	<selectKey keyProperty="count" resultType="int" order="BEFORE">
+  		select count(*) from asset_floor where id = #{floorId}
+  	</selectKey>
+  	<if test="count > 0">
+  		insert into asset_area (id,floorId,name,vaild) values(uuid(),#{floorId},#{name},1)
+  	</if>
+  </insert>
+  <update id="updateArea">
+  	<selectKey keyProperty="count" resultType="int" order="BEFORE">
+  		select count(*) from asset_floor where id = #{floorId}
+  	</selectKey>
+  	<if test="count > 0">
+  		set floorId = #{floorId}, name = #{name}
+  	</if>
+  	<if test="count == 0">
+  		set name = #{name}
+  	</if>
+  	where id = #{id}
+  </update>
 </mapper>

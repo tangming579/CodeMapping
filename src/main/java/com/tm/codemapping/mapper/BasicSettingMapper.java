@@ -29,11 +29,9 @@ public interface BasicSettingMapper {
 	
 	public int updateFloor(@Param("buildingId")String buildingId,@Param("id")String id,@Param("name")String name);
 	
-	@Select("insert into asset_area (id,name,vaild) values(uuid(),#{name},1)")
-	public SettingAreaBean insertArea(@Param("floorId")String floorId,@Param("name")String name);
-	
+	public int insertArea(@Param("floorId")String floorId,@Param("name")String name);
 	
 	public int deleteArea(String id);
 	
-	public int updateArea(String floorId,String name);
+	public int updateArea(String id,String floorId,String name);
 }

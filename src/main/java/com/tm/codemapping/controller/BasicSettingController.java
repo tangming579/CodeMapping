@@ -98,4 +98,26 @@ public class BasicSettingController {
 		 }else
 			 throw new ResultException(ResultEnum.IDNOTFOUND_ERROR);
 	 }
+	 @ApiOperation(value="新建区域", notes="")
+	 @ApiImplicitParam(name = "id", value = "区域id",paramType = "query", dataType = "String")
+	 @RequestMapping(value="insertArea",method= RequestMethod.POST)
+	 public ResultBean insertArea(String floorId,String name) throws Exception {
+		 if(StringUtils.isNullOrWhiteSpace(floorId)) {
+			 throw new ResultException(ResultEnum.NOTNULL_ERROR);
+		 }
+		 basicSettingService.insertArea(floorId,name);
+		 return ResultUtils.success();
+	 }
+	 @ApiOperation(value="更新区域", notes="")
+	 @RequestMapping(value="updateArea",method= RequestMethod.POST)
+	 public ResultBean updateArea(String id,String floorId,String name) throws Exception {
+		 if(StringUtils.isNullOrWhiteSpace(floorId)||StringUtils.isNullOrWhiteSpace(id)) {
+			 throw new ResultException(ResultEnum.NOTNULL_ERROR);
+		 }
+		 Integer result = basicSettingService.updateArea(id,floorId,name);
+		 if(result==1) {
+			 return ResultUtils.success();
+		 }else
+			 throw new ResultException(ResultEnum.IDNOTFOUND_ERROR);
+	 }
 }

@@ -1,5 +1,7 @@
 package com.tm.codemapping.config;
 
+import org.quartz.CronScheduleBuilder;
+import org.quartz.CronTrigger;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
@@ -23,16 +25,26 @@ import com.tm.codemapping.service.OrderQuartz;
 public class QuartzConfig {
     @Bean
     public JobDetail teatQuartzDetail(){
-        return JobBuilder.newJob(OrderQuartz.class).withIdentity("testQuartz").storeDurably().build();
+        return JobBuilder.newJob(OrderQuartz.class).withIdentity("OrderQuartz").storeDurably().build();
     }
     @Bean
     public Trigger testQuartzTrigger(){
-        SimpleScheduleBuilder scheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
+        /*SimpleScheduleBuilder scheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
                 .withIntervalInSeconds(10)  //设置时间周期单位秒
                 .repeatForever();
-        return TriggerBuilder.newTrigger().forJob(teatQuartzDetail())
-                .withIdentity("testQuartz")
+                
+          return TriggerBuilder.newTrigger().forJob(teatQuartzDetail())
+                .withIdentity("OrderQuartz")
                 .withSchedule(scheduleBuilder)
                 .build();
+                */
+    	
+    	//作业的触发器
+        CronTrigger scheduleBuilder = TriggerBuilder.
+                                    newTrigger().
+                                    withIdentity("cronTrigger", "cronTrigger").
+                                    withSchedule(CronScheduleBuilder.cronSchedule("0 0 23 ? * MON-FRI")). 
+                                    build();
+        return scheduleBuilder;
     }
 }

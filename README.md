@@ -4,6 +4,7 @@
 - PageHelper分页
 - Shiro权限管理
 - Mybatis + Mybatis-plus
+- Quartz定时任务
 - 自定义Filter,避免XSS攻击和SQL注入攻击
 - Redis 实现缓存
 - RabbitMQ 消息分发

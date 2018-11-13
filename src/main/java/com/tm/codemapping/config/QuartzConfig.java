@@ -29,7 +29,9 @@ public class QuartzConfig {
     }
     @Bean
     public Trigger testQuartzTrigger(){
-        /*SimpleScheduleBuilder scheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
+        
+    	/*
+    	SimpleScheduleBuilder scheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
                 .withIntervalInSeconds(10)  //设置时间周期单位秒
                 .repeatForever();
                 
@@ -37,13 +39,14 @@ public class QuartzConfig {
                 .withIdentity("OrderQuartz")
                 .withSchedule(scheduleBuilder)
                 .build();
-                */
-    	
+                
+    	*/
     	//作业的触发器
-        CronTrigger scheduleBuilder = TriggerBuilder.
+                CronTrigger scheduleBuilder = TriggerBuilder.
                                     newTrigger().
+                                    forJob(teatQuartzDetail()).
                                     withIdentity("cronTrigger", "cronTrigger").
-                                    withSchedule(CronScheduleBuilder.cronSchedule("0 0 23 ? * MON-FRI")). 
+                                    withSchedule(CronScheduleBuilder.cronSchedule("0 59 23 ? * MON-FRI")). 
                                     build();
         return scheduleBuilder;
     }

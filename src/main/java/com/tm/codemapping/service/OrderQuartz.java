@@ -17,13 +17,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrderQuartz extends QuartzJobBean {
 
-	/**
-     * 执行定时任务
-     * @param jobExecutionContext
-     * @throws JobExecutionException
-     */
+	/** 
+     * 要定时执行的内容
+     */ 
     @Override
     protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        System.out.println("quartz task "+new Date());
+    	
+        System.out.println("quartz task " + new Date());
     }
 }

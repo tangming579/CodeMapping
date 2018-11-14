@@ -37,6 +37,21 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
+netty:
+  tcp: 
+    port: 2236
+  # bossGroup的线程数
+  boss:
+    thread:
+      count: 2
+  # worker的线程数
+  worker:
+    thread:
+      count: 2
+  #是否使用长连接
+  so:
+    keepalive: true
+    backlog: 100
       
 logging:
   file: target/app.log

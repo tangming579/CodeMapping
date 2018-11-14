@@ -2,6 +2,9 @@ package com.tm.system.netty;
 
 import java.net.InetSocketAddress;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -28,13 +31,19 @@ public class NettyServer {
 
 	private Channel serverChannel;
 
+	@PostConstruct
 	public void start() throws Exception {
 		serverChannel =  serverBootstrap.bind(tcpPort).sync().channel().closeFuture().sync().channel();
+		
+		 System.out.printf("Netty Start");
 	}
 	
+	@PreDestroy
 	public void stop() throws Exception {
 		serverChannel.close();
 		serverChannel.parent().close();
+		
+		System.out.printf("Netty Stop");
 	}
 
 	public ServerBootstrap getServerBootstrap() {

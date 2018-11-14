@@ -10,11 +10,14 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.codec.string.StringEncoder;
 
 /**
 * @author tangming
@@ -81,5 +84,25 @@ public class NettyConfig {
         options.put(ChannelOption.SO_KEEPALIVE, keepAlive);
         options.put(ChannelOption.SO_BACKLOG, backlog);
         return options;
+    }
+    
+    @Bean(name = "stringEncoder")
+    public StringEncoder stringEncoder() {
+        return new StringEncoder();
+    }
+
+    @Bean(name = "stringDecoder")
+    public StringDecoder stringDecoder() {
+        return new StringDecoder();
+    }
+
+    /**
+     * Necessary to make the Value annotations work.
+     *
+     * @return
+     */
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertyPlaceholderConfigurer() {
+        return new PropertySourcesPlaceholderConfigurer();
     }
 }

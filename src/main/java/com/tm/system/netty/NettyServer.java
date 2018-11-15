@@ -30,6 +30,11 @@ public class NettyServer {
 	private InetSocketAddress tcpPort;
 
 	private Channel serverChannel;
+	
+	@PostConstruct
+    public void init() {
+        System.out.println("Creating Boss.");
+    }
 
 	@PostConstruct
 	public void start() throws Exception {

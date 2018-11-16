@@ -5,9 +5,13 @@ import java.net.InetSocketAddress;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+
+import com.tm.codemapping.common.BootTest;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
@@ -21,6 +25,8 @@ import io.netty.channel.Channel;
 @Component
 public class NettyServer {
 
+	private static Logger logger = LoggerFactory.getLogger(NettyServer.class);
+	
 	@Autowired
 	@Qualifier("serverBootstrap")
 	private ServerBootstrap serverBootstrap;
@@ -33,14 +39,14 @@ public class NettyServer {
 	
 	@PostConstruct
     public void init() {
-        System.out.println("Creating Boss.");
+		logger.info("Netty init.");
     }
 
 	@PostConstruct
 	public void start() throws Exception {
 		serverChannel =  serverBootstrap.bind(tcpPort).sync().channel().closeFuture().sync().channel();
 		
-		 System.out.printf("Netty Start");
+		logger.info("Netty Start");
 	}
 	
 	@PreDestroy
@@ -48,7 +54,7 @@ public class NettyServer {
 		serverChannel.close();
 		serverChannel.parent().close();
 		
-		System.out.printf("Netty Stop");
+		logger.info("Netty Stop");
 	}
 
 	public ServerBootstrap getServerBootstrap() {

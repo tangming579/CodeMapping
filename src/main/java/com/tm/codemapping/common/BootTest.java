@@ -2,6 +2,8 @@ package com.tm.codemapping.common;
 
 import javax.annotation.PostConstruct;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,8 +14,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class BootTest {
 
+	private static Logger logger = LoggerFactory.getLogger(BootTest.class);
+	
 	@PostConstruct
     public void init() {
-        System.out.println("Creating Boss.11111");
+		
+		logger.info("Creating Boss.11111");
     }
 }

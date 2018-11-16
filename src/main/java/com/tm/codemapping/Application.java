@@ -7,7 +7,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 
-import com.tm.system.netty.NettyServer;
+import com.tm.codemapping.netty.NettyServer;
 
 @SpringBootApplication
 @ServletComponentScan //配置druid必须加的注解，如果不加，访问页面打不开

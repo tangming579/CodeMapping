@@ -1,6 +1,9 @@
-package com.tm.system.netty;
+package com.tm.codemapping.netty;
 
 import java.util.concurrent.TimeUnit;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
@@ -12,6 +15,8 @@ import io.netty.handler.timeout.IdleStateHandler;
 * @version 创建时间：2018年11月14日 下午8:08:55
 * 类说明
 */
+@Component
+@Qualifier("serverChannelInitializer")
 public class ServerChannelInitializer extends ChannelInitializer<SocketChannel> {
 
 	private final static int READER_IDLE_TIME_SECONDS = 20;//读操作空闲20秒

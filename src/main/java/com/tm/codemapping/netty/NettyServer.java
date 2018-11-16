@@ -1,4 +1,4 @@
-package com.tm.system.netty;
+package com.tm.codemapping.netty;
 
 import java.net.InetSocketAddress;
 
@@ -10,8 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-
-import com.tm.codemapping.common.BootTest;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
@@ -39,7 +37,7 @@ public class NettyServer {
 	
 	@PostConstruct
     public void init() {
-		logger.info("Netty init.");
+		logger.info("Netty init."+ tcpPort.getPort());
     }
 
 	@PostConstruct

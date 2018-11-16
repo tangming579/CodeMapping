@@ -39,7 +39,7 @@ pagehelper:
   params: count=countSql
 netty:
   tcp: 
-    port: 2236
+    port: 11236
   # bossGroup的线程数
   boss:
     thread:

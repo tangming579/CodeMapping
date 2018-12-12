@@ -40,14 +40,14 @@ public class NettyServer {
 		logger.info("Netty init."+ tcpPort.getPort());
     }
 
-	@PostConstruct
+	//@PostConstruct
 	public void start() throws Exception {
 		serverChannel =  serverBootstrap.bind(tcpPort).sync().channel().closeFuture().sync().channel();
 		
 		logger.info("Netty Start");
 	}
 	
-	@PreDestroy
+	//@PreDestroy
 	public void stop() throws Exception {
 		serverChannel.close();
 		serverChannel.parent().close();

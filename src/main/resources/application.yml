@@ -14,10 +14,10 @@ spring:
     maxActive: 20
     maxWait: 60000
   rabbitmq:
-    host: 127.0.0.1
-    port: 5678
-    username: guest
-    password: guest
+    host: 154.8.184.140
+    port: 5672
+    username: admin
+    password: admin
   jackson:
     serialization:
       write-dates-as-timestamps: true  #使用数值timestamp表示日期

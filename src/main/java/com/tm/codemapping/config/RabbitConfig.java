@@ -2,6 +2,10 @@ package com.tm.codemapping.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -57,5 +61,30 @@ public class RabbitConfig {
     public RabbitTemplate rabbitTemplate() {
         RabbitTemplate template = new RabbitTemplate(connectionFactory());
         return template;
+    }
+    @Bean
+    public DirectExchange defaultExchange() {
+        return new DirectExchange(EXCHANGE_A);
+    }
+    /**
+     * 获取队列A
+     * @return
+     */
+    @Bean
+    public Queue queueA() {
+        return new Queue(QUEUE_A, true); //队列持久
+    }
+    @Bean
+    public Queue queueB() {
+        return new Queue(QUEUE_B, true); //队列持久
+    }
+
+    @Bean
+    public Binding binding() {
+        return BindingBuilder.bind(queueA()).to(defaultExchange()).with(RabbitConfig.ROUTINGKEY_A);
+    }
+    @Bean
+    public Binding bindingB(){
+        return BindingBuilder.bind(queueB()).to(defaultExchange()).with(RabbitConfig.ROUTINGKEY_B);
     }
 }

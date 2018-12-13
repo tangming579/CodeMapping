@@ -2,6 +2,7 @@ package com.tm.codemapping.controller;
 
 import java.util.List;
 
+import com.tm.codemapping.MQ.MsgProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +35,8 @@ import io.swagger.annotations.ApiOperation;
 public class ValuesController {
 
 	@Autowired AssetItemService assetItemService;
+	@Autowired
+	MsgProducer msgProducer;
 	
 	@SuppressWarnings("unchecked")
 	@PostMapping("/getlist")
@@ -99,5 +102,13 @@ public class ValuesController {
 		
 		String method=jsonParam.getString("method");
 		return ResultUtils.success(method);
+	}
+	@ApiOperation(value="RabbitMQ", notes="")
+	@ResponseBody
+	@RequestMapping(value = "/product", method = RequestMethod.GET)
+	public ResultBean msgProducer(@RequestParam(value="id",required=true)String id) {
+
+		msgProducer.sendMsg("Hello RabbitMQ!");
+		return ResultUtils.success();
 	}
 }

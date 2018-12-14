@@ -106,9 +106,9 @@ public class ValuesController {
 	@ApiOperation(value="RabbitMQ", notes="")
 	@ResponseBody
 	@RequestMapping(value = "/product", method = RequestMethod.GET)
-	public ResultBean msgProducer(@RequestParam(value="id",required=true)String id) {
+	public ResultBean msgProducer(@RequestParam(value="product",required=true)String product) {
 
-		msgProducer.sendMsg("Hello RabbitMQ!");
+		msgProducer.sendMsg(product);
 		return ResultUtils.success();
 	}
 }

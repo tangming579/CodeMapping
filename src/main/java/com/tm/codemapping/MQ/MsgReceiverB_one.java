@@ -8,12 +8,12 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 @Component
-@RabbitListener(queues = RabbitConfig.QUEUE_A)
-public class MsgReceiverC_one {
+@RabbitListener(queues = RabbitConfig.QUEUE_B)
+public class MsgReceiverB_one {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RabbitHandler
     public void process(String content) {
-        logger.info("处理器one接收处理队列A当中的消息： " + content);
+        logger.info("处理器B one接收处理队列A当中的消息： " + content);
     }
 }
